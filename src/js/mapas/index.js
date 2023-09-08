@@ -6,6 +6,7 @@ import { lenguaje  } from "../lenguaje";
 import L from "leaflet";
 
 const botonActualizar = document.getElementById("actualizar");
+const botonQuitar = document.getElementById("quitar");
 const map = L.map('mapa', {
     center: [15.52,-90.32],
     zoom : 5,
@@ -114,6 +115,14 @@ const buscar = async () => {
                     NuevoMarcador.addTo(markerLayer);
                 }
             });
+
+
+
+
+
+
+
+
         } else {
             Toast.fire({
                 title: 'No se encontraron registros',
@@ -131,7 +140,7 @@ const buscar = async () => {
 botonActualizar.addEventListener("click", () => {
     // Muestra un Toast indicando que los datos se están actualizando
     Toast.fire({
-        title: 'Actualizando datos...',
+        title: 'Buscando marcadores...',
         icon: 'info',
         toast: true,
         position: 'top-end',
@@ -142,4 +151,22 @@ botonActualizar.addEventListener("click", () => {
     buscar();
 });
 
-buscar();
+
+
+botonQuitar.addEventListener("click", () => {
+    //limpia los marcadores
+      markerLayer.clearLayers();
+    
+    
+      Toast.fire({
+        title: 'Marcadores quitados',
+        text: 'Se quitaron todos los marcadores buscados.',
+        icon: 'success',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000 // Duración del mensaje en milisegundos (3 segundos)
+      });
+    });
+
+//buscar();
